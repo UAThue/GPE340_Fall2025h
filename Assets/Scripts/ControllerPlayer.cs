@@ -32,6 +32,16 @@ public class ControllerPlayer : Controller
         {
             RotateToLookAtMouse();
         }    
+
+        // Handle trigger pulls
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            pawn.PullTrigger();
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            pawn.ReleaseTrigger();
+        }
     }
 
     private void RotateToLookAtMouse()

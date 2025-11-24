@@ -4,8 +4,8 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public Pawn playerPawn;
-    public List<Controller> players;
+    [HideInInspector] public Pawn playerPawn;
+    [Tooltip("Up to date list of all our players.")] public List<Controller> players;
 
 
     private void Awake()
@@ -33,7 +33,17 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {        
+    }
+
+    /// <summary>
+    /// Makes the screen flash a defined number of times.
+    /// Uses a coroutine that can be stopped  by calling StopAllCoroutines
+    /// Does not make the object invulnerable while flashing; you are looking for the ImmuneFlash() function.
+    /// </summary>
+    /// <param name="numFlashes">Number of Times to flash the screen</param>
+    public void FlashScreen ( int numFlashes)
     {
-        
+        // TODO: Make the screen flash
     }
 }
