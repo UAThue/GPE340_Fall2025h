@@ -8,7 +8,6 @@ public class PawnRootMotion : Pawn
     private Animator animator;
     [HideInInspector] public Weapon weapon;
     [Tooltip("Make sure this is a prefab and not in the scene!")]
-    public Weapon defaultWeapon;
     public Transform weaponMountPoint;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,12 +15,6 @@ public class PawnRootMotion : Pawn
     {
         // Get our animator
         animator = GetComponent<Animator>();
-
-        // If they start with a weapon equipped - make sure we spawn and equip that weapon!
-        if (defaultWeapon != null)
-        {
-            EquipWeapon(defaultWeapon);
-        }
     }
 
     // Update is called once per frame
@@ -45,7 +38,6 @@ public class PawnRootMotion : Pawn
             weapon.OnTriggerRelease.Invoke();
         }
     }
-
 
     public void EquipWeapon ( Weapon weaponToEquip )
     {

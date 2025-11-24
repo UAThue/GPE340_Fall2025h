@@ -8,9 +8,20 @@ public class ControllerPlayer : Controller
     public Camera inputCamera;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Start()
     {
-        
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.players.Add(this);
+        }
+        base.Start();
+    }
+
+    public override void OnDestroy() {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.players.Remove(this);
+        }
     }
 
     // Update is called once per frame

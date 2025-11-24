@@ -3,9 +3,20 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
+    // Singleton
     public static GameManager instance;
-    [HideInInspector] public Pawn playerPawn;
-    [Tooltip("Up to date list of all our players.")] public List<Controller> players;
+
+    [Header("Important Objects")]
+    [Tooltip("Up to date list of all our players.")] public List<ControllerPlayer> players;
+    [Tooltip("Up to date list of all our AIs.")] public List<ControllerAI> ais;
+    [Tooltip("Up to date list of all our PlayerSpawns.")] public List<PlayerSpawn> playerSpawns;
+
+    [Header("Prefabs")]
+    public ControllerPlayer pf_playerControler;
+    public Pawn pf_playerPawn;
+
+    [Header("Level/Wave Data")]
+    public int currentLevel;
 
 
     private void Awake()
@@ -24,17 +35,23 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // TODO: Make this safe for errors - spawn player and controller when needed
-        //       Right now, it requires the controller and pawn in the world and connected in the inspector
-     
-        // Have Player 0 possess a pawn
-        players[0].Possess(playerPawn);
+        SpawnPlayer();
     }
 
     // Update is called once per frame
     void Update()
     {        
     }
+
+    public void SpawnPlayer()
+    {
+        // TODO: Spawn a player (controller and pawn)
+        ControllerPlayer newPlayerController = Instantiate<ControllerPlayer>(pf_playerControler, Vector3.zero, Quaternion.identity);
+        Pawn newPlayerPawn = Instantiate<Pawn>(pf_playerPawn);
+
+        // TODO: Possess the player pawn
+    }
+
 
     /// <summary>
     /// Makes the screen flash a defined number of times.

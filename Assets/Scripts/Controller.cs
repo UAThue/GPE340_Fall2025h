@@ -3,6 +3,11 @@ using UnityEngine;
 public abstract class Controller : MonoBehaviour
 {
     public Pawn pawn;
+
+    public virtual void Start()
+    {
+    }
+
     public virtual void Possess(Pawn pawnToPossess) 
     {
         pawn = pawnToPossess;
@@ -13,6 +18,10 @@ public abstract class Controller : MonoBehaviour
     {
         pawn.controller = null;
         pawn = null;
+    }
+
+    public virtual void OnDestroy() 
+    {
     }
 
 }

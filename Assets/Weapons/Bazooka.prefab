@@ -115,6 +115,7 @@ MonoBehaviour:
   fireRate: 1
   ammoCount: 100
   maxAmmo: 100
+  accuracy: 1
   OnTriggerPull:
     m_PersistentCalls:
       m_Calls:

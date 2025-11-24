@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class WA_AutoProjectile : MonoBehaviour
 {
     [Header("Data")]
-    public GameObject pf_Bullet;
+    public ProjectileBullet pf_Bullet;
     public bool isFiring = false;
     private float nextShootTime;
     private Weapon weapon;
@@ -66,12 +66,21 @@ public class WA_AutoProjectile : MonoBehaviour
 
     public void Shoot()
     {
-        //TODO: Actually Shoot
-        // Temp: Say "bang"
-        Debug.Log("Bang!");
+        //Actually Shoot
+        ProjectileBullet bullet = Instantiate<ProjectileBullet>(pf_Bullet, weapon.firePoint.position, weapon.firePoint.rotation) as ProjectileBullet;
+        if (bullet != null)
+        { 
+            bullet.damageDone = weapon.damageDone;
+        }
+
+        // Rotate the bullet based on our accuracy (this way it isn't perfectly aimed)
+        bullet.transform.Rotate(0, weapon.GetAccuracyModifiedRotationDegrees(),0);
 
         // Subtract a bullet
         weapon.ammoCount--;
+
+        // Do our weapon shoot event
+        weapon.OnShoot.Invoke();
     }
 
 
