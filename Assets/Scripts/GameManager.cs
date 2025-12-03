@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class GameManager : MonoBehaviour
     [Tooltip("Up to date list of all our PlayerSpawns.")] public List<PlayerSpawn> playerSpawns;
     [Tooltip("Up to date list of all our EnemySpawns.")] public List<EnemySpawn> enemySpawns;
     public Camera playerCamera;
+    public Scene pauseMenuScene;
+    public AudioMixer audioMixer;
 
     [Header("Prefabs")]
     public ControllerPlayer pf_playerController;
@@ -21,13 +25,14 @@ public class GameManager : MonoBehaviour
 
     [Header("GameData")]
     public bool isPaused;
+    public float volumeMain;
+    public float volumeSFX;
+    public float volumeMusic;
     public int startingLives = 3;
 
     [Header("Level/Wave Data")]
     public int currentWave;
     public List<Wave> waves;
-
-
 
     private void Awake()
     {
@@ -51,6 +56,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
+
     }
 
 
@@ -148,6 +154,9 @@ public class GameManager : MonoBehaviour
 
         // Set a paused boolean
         isPaused = true;
+
+        // Load the pause menu
+        LoadPauseMenu();
     }
 
     public void Unpause()
@@ -157,6 +166,9 @@ public class GameManager : MonoBehaviour
 
         // Set a paused boolean
         isPaused = false;
+
+        // Unload the pause menu
+        UnloadPauseMenu();
     }
 
     public void TogglePause()
@@ -169,4 +181,17 @@ public class GameManager : MonoBehaviour
             Unpause();
         }
     }
+
+    public void LoadPauseMenu()
+    {
+        LoadSceneParameters loadParameters = new LoadSceneParameters();
+        loadParameters.loadSceneMode = LoadSceneMode.Additive;
+        pauseMenuScene = SceneManager.LoadScene("PauseMenu", loadParameters );
+    }
+
+    public void UnloadPauseMenu()
+    {
+        SceneManager.UnloadSceneAsync(pauseMenuScene);
+    }
+
 }
