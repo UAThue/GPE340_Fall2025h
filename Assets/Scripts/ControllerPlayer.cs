@@ -25,7 +25,10 @@ public class ControllerPlayer : Controller
     public override void Start()
     {
         // Set lives to default from GameManager
-        lives = GameManager.instance.startingLives;
+        if (GameManager.instance != null)
+        {
+            lives = GameManager.instance.startingLives;
+        }
 
         // Start score at 0
         score = 0;
@@ -45,7 +48,10 @@ public class ControllerPlayer : Controller
     void Update()
     {
         // Quit early if we are paused!
-        if (GameManager.instance.isPaused) return;
+        if (GameManager.instance != null)
+        {
+            if (GameManager.instance.isPaused) return;
+        }
 
         // Otherwise...
         ProccessInputs();

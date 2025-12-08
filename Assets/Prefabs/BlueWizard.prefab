@@ -120,6 +120,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 22855aad9441d9e4e8c8f4b1e37efe16, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9129544389737935026}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 22855aad9441d9e4e8c8f4b1e37efe16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 160299368776829252}
   m_SourcePrefab: {fileID: 100100000, guid: 22855aad9441d9e4e8c8f4b1e37efe16, type: 3}
 --- !u!4 &2307663140926120348 stripped
 Transform:
@@ -252,6 +255,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 160299368776829252}
+        m_TargetAssemblyTypeName: DeathDropItem, Assembly-CSharp
+        m_MethodName: DropRandomItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &9129544389737935026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,3 +279,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1924b742eb68bbd4d81c6729642b0810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &160299368776829252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3120334606798797606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc19024f9242e2418974a743ee7efa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops:
+  - objectToDrop: {fileID: 522683086530861419, guid: d348a172e4b808648a63a546b9faf06f, type: 3}
+    weight: 1
+  - objectToDrop: {fileID: 522683086530861419, guid: b91e20e1c396a3b4e82ece569cdb407b, type: 3}
+    weight: 999
+  - objectToDrop: {fileID: 3120334606798797606, guid: 5ebb938b0e0d0024685719e016cb968d, type: 3}
+    weight: 5
